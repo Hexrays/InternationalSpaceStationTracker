@@ -20,6 +20,7 @@ Run `npm build` to create a distro folder and a bundle.js file.
 * make containers folder and separate containers from stateless functional components
 * add a route for pass times
 * stop centering if map has been panned
+  * [onChange](https://jsbin.com/fapovemuyi/edit?js,console,output)
 * use a line instead of dots
 * style it
 * host it
