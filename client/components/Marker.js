@@ -16,24 +16,20 @@ const style = {
   backgroundColor : 'lime',
 };
 
-const arrowStyle = (angle) => {
-  return {
-    position        : 'absolute',
-    width           : ARR_WIDTH,
-    height          : ARR_HEIGHT,
-    right           : 0,
-    top             : 0,
-    borderTop       : '2px solid lime',
-    borderRight     : '2px solid lime',
-    transformOrigin : 'top right',
-    transform       : `rotate(${angle-90}deg)`
-  }
-}
+const latestStyle = {
+  position        : 'absolute',
+  width           : DOT_WIDTH * 2,
+  height          : DOT_HEIGHT * 2,
+  left            : -DOT_WIDTH,
+  top             : -DOT_HEIGHT,
+  borderRadius    : DOT_HEIGHT,
+  backgroundColor : 'lime',
+};
 
-const Marker = ({key, degs}) => {
-  if(degs) {
+const Marker = ({key, latest}) => {
+  if(latest) {
     return (
-      <div className="map-marker" key={key} style={arrowStyle(-degs)}></div>
+      <div className="map-marker" key={key} style={latestStyle}></div>
     );
   } else {
     return (

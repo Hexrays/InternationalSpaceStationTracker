@@ -32,13 +32,13 @@ class Hero extends Component {
     }, 5000);
   }
 
-  renderMarker({location, index}, total, angle) {
-    const degs = index == total ? angle : false;
+  renderMarker({location, index}, total) {
+    const latest = index == total ? true : false;
     return (
       <Marker
         key={index}
         {...location}
-        degs={degs}
+        latest={latest}
       ></Marker>
     );
   }
@@ -73,16 +73,6 @@ class Hero extends Component {
     const lastLocation = locations[lastLocId];
     const center = this.state.center ? this.state.center : lastLocation.location
 
-    if(locations.length > 2) {
-      angle = angleInDeg({
-        x: lastLocation.location.lat,
-        y: lastLocation.location.lng
-      },{
-        x:  locations[locations.length -2].location.lat,
-        y: locations[locations.length -2].location.lng
-      });
-    }
-
     return (
       <div className="hero">
         <IssMap
@@ -91,7 +81,7 @@ class Hero extends Component {
           apiKey={MAPS_API_KEY}
           onMapChange={this._handleMapChange.bind(this)}
           center={center} >
-          {locations.map(location => this.renderMarker(location, lastLocId, angle))}
+          {locations.map(location => this.renderMarker(location, lastLocId))}
         </IssMap>
         <IssLocationsTable
           locations={locations}/>
