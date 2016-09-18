@@ -2,6 +2,7 @@ import {
   ADD_LOCATION
 } from '../actions/types';
 
+let nextLocationId = 0;
 
 function addLocation(state = [], action) {
   switch(action.type){
@@ -12,7 +13,7 @@ function addLocation(state = [], action) {
           lng: action.payload.iss_position.longitude
         },
         time: new Date(action.payload.timestamp * 1000).toLocaleString(),
-        index: action.payload.timestamp
+        index: (nextLocationId++).toString()
       };
 
     default:
