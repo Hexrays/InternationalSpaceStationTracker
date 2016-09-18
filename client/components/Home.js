@@ -11,7 +11,7 @@ import { MAPS_API_KEY } from '../config';
 
 class Home extends Component {
   static defaultProps = {
-    zoom: 3
+    zoom: 1
   }
   shouldComponentUpdate = shouldPureComponentUpdate;
 
@@ -64,8 +64,6 @@ class Home extends Component {
           </thead>
           {subLocations.reverse().map(location => <IssLocationsList {...location} key={location.index} /> )}
         </table>
-
-
       </div>
     );
   }

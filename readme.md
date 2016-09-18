@@ -15,6 +15,14 @@ Spoiler alert. Nothing happens yet.
 Run `npm build` to create a distro folder and a bundle.js file.
 
 ### Todos
-* Add todos
-* Add a basic todo as an example of redux architecture
-* Hook the todos to firebase to persist the todos.
+* add a details of what the page is about/ what the map is doing
+* clean up home file
+* make containers folder and separate containers from stateless functional components
+* add a route for pass times
+* stop centering if map has been panned
+* use a line instead of dots
+* style it
+* host it
+
+Bonus:
+* Add route for [mars curiosity](https://api.nasa.gov/api.html#MarsPhotos) images
