@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import shouldPureComponentUpdate from 'react-pure-render/function';
 
-import IssMap from './Map';
-import IssLocationsList from './IssLocationsList';
+import { MAPS_API_KEY } from '../config';
+
+import IssMap from '../components/Map';
+import Marker from '../components/Marker';
+import IssLocationsTable from '../components/IssLocationsTable';
 import * as actions from '../actions';
 
-import Marker from './Marker';
-import { MAPS_API_KEY } from '../config';
 
 class Home extends Component {
   static defaultProps = {
-    zoom: 2
+    zoom: 3
   }
-  shouldComponentUpdate = shouldPureComponentUpdate;
 
   constructor(props) {
     super(props);
@@ -70,27 +69,16 @@ class Home extends Component {
 
     return (
       <div className="landing-container container">
-        <div className="map-container">
-          <IssMap
-            zoom={this.props.zoom}
-            locations={this.props.locations}
-            apiKey={MAPS_API_KEY}
-            onMapChange={this._handleMapChange.bind(this)}
-            center={center}
-           >
-           {locations.map(location => this.renderMarker(location))}
-          </IssMap>
-        </div>
-        <table className="data-table">
-          <thead>
-            <tr key="1">
-              <th>Time</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
-            </tr>
-          </thead>
-          {subLocations.reverse().map(location => <IssLocationsList {...location} key={location.index} /> )}
-        </table>
+        <IssMap
+          zoom={this.props.zoom}
+          locations={this.props.locations}
+          apiKey={MAPS_API_KEY}
+          onMapChange={this._handleMapChange.bind(this)}
+          center={center} >
+          {locations.map(location => this.renderMarker(location))}
+        </IssMap>
+        <IssLocationsTable
+          locations={locations}/>
       </div>
     );
   }
@@ -100,4 +88,6 @@ function mapStateToProps(state) {
   return { locations: state.issReducer };
 }
 
-export default connect(mapStateToProps, actions)(Home)
+export default connect(mapStateToProps, actions)(Home);
+
+// {subLocations.reverse().map(location => <IssLocationsTableItem {...location} key={location.index} /> )}

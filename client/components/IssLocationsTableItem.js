@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IssLocationsList = ({time, index, location}) => {
+const IssLocationsTableItem = ({time, index, location}) => {
   return (
     <tr key={index}>
       <td>{time} </td>
@@ -9,4 +9,4 @@ const IssLocationsList = ({time, index, location}) => {
     </tr>
   );
 }
-export default IssLocationsList;
+export default IssLocationsTableItem;

@@ -1,32 +1,22 @@
-import React, {PropTypes, Component} from 'react';
+import React from 'react';
 
-const K_WIDTH = 3;
-const K_HEIGHT = 3;
+const DOT_WIDTH = 3;
+const DOT_HEIGHT = 3;
 
 const style = {
-  // initially any map object has left top corner at lat lng coordinates
-  // it's on you to set object origin to 0,0 coordinates
   position        : 'absolute',
-  width           : K_WIDTH,
-  height          : K_HEIGHT,
-  left            : -K_WIDTH / 2,
-  top             : -K_HEIGHT / 2,
+  width           : DOT_WIDTH,
+  height          : DOT_HEIGHT,
+  left            : -DOT_WIDTH / 2,
+  top             : -DOT_HEIGHT / 2,
 
-  borderRadius    : K_HEIGHT,
+  borderRadius    : DOT_HEIGHT,
   backgroundColor : 'red',
   textAlign       : 'center',
 };
 
-export default class Marker extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  };
+const Marker = (props) => (
+  <div key={props.key} style={style}></div>
+);
 
-  static defaultProps = {};
-
-  render() {
-    return (
-       <div key={this.props.key} style={style}></div>
-    );
-  }
-}
+export default Marker;

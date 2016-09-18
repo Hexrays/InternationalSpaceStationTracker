@@ -16,14 +16,11 @@ Run `npm build` to create a distro folder and a bundle.js file.
 
 ### Todos
 * add a details of what the page is about/ what the map is doing
-* clean up home file
-* make containers folder and separate containers from stateless functional components
-* add a route for pass times
-* stop centering if map has been panned
-  * [onChange](https://jsbin.com/fapovemuyi/edit?js,console,output)
-* use a line instead of dots
+* add location table that updates as it moves
 * style it
 * host it
 
 Bonus:
 * Add route for [mars curiosity](https://api.nasa.gov/api.html#MarsPhotos) images
+* add a route for pass times
+* use a line instead of dots?
