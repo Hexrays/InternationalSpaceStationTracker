@@ -11,12 +11,17 @@ import { MAPS_API_KEY } from '../config';
 
 class Home extends Component {
   static defaultProps = {
-    zoom: 1
+    zoom: 2
   }
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      center  : null,
+      timeout : null
+    }
   }
 
   componentWillMount() {
@@ -35,6 +40,25 @@ class Home extends Component {
     );
   }
 
+  _handleMapChange({center, zoom}) {
+    let timeout;
+
+    if (this.state.timeout) {
+      window.clearTimeout(this.state.timeout)
+    }
+    timeout = setTimeout(() => {
+      this.setState({
+        center: null,
+        timeout: null
+      });
+    }, 30000)
+
+    this.setState({
+      center,
+      timeout
+    });
+  }
+
   render() {
     const locations = this.props.locations;
     const subLocations = locations.slice(Math.max(locations.length - 10, 1));
@@ -42,6 +66,7 @@ class Home extends Component {
     if(!locations.length) {
       return <div>Loading...</div>
     }
+    const center = this.state.center ? this.state.center : locations[locations.length -1].location
 
     return (
       <div className="landing-container container">
@@ -50,6 +75,8 @@ class Home extends Component {
             zoom={this.props.zoom}
             locations={this.props.locations}
             apiKey={MAPS_API_KEY}
+            onMapChange={this._handleMapChange.bind(this)}
+            center={center}
            >
            {locations.map(location => this.renderMarker(location))}
           </IssMap>

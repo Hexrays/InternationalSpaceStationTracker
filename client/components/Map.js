@@ -5,6 +5,7 @@ function createMapOptions() {
   return {
     minZoomOverride: true,
     minZoom: 2,
+    styles: [{ stylers: [{ 'saturation': -65 }, { 'gamma': 0.8 }, { 'lightness': 10 }, { 'visibility': 'on' }] }]
   };
 }
 
@@ -14,8 +15,9 @@ const IssMap = (props) => (
     bootstrapURLKeys={{
         key: props.apiKey,
     }}
-    center={props.locations[props.locations.length -1].location}
+    center={props.center}
     zoom={props.zoom}
+    onChange={props.onMapChange}
     >
     {props.children}
   </GoogleMap>

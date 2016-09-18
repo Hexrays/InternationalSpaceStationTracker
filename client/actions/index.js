@@ -10,7 +10,6 @@ export function pollIssPosition() {
   return function(dispatch) {
     axios.get(API_URL)
       .then(response => {
-        console.log(response);
         dispatch({
           type: ADD_LOCATION,
           payload: response.data
