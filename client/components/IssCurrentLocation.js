@@ -1,5 +1,4 @@
 import React from 'react';
-import IssLocationsTableItem from './IssLocationsTableItem';
 
 const IssCurrentLocation = ({location}) => (
   <figure className="map-info">

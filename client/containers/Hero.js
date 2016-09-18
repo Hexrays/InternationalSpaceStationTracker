@@ -6,6 +6,7 @@ import { MAPS_API_KEY } from '../config';
 import IssMap from '../components/Map';
 import Marker from '../components/Marker';
 import IssCurrentLocation from '../components/IssCurrentLocation';
+import Copy from '../components/Copy';
 import * as actions from '../actions';
 
 import { angleInDeg } from '../helpers';
@@ -71,10 +72,11 @@ class Hero extends Component {
       return <div>Loading...</div>
     }
     const lastLocation = locations[lastLocId];
+    const subLocations = locations.slice(Math.max(locations.length - 3, 1));
     const center = this.state.center ? this.state.center : lastLocation.location
 
     return (
-      <div className="hero">
+      <section className="hero">
         <IssMap
           zoom={this.props.zoom}
           locations={this.props.locations}
@@ -85,7 +87,8 @@ class Hero extends Component {
         </IssMap>
         <IssCurrentLocation
           location={lastLocation}/>
-      </div>
+        <Copy locations={subLocations}/>
+      </section>
     );
   }
 };
@@ -96,5 +99,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, actions)(Hero);
 
-    // const subLocations = locations.slice(Math.max(locations.length - 10, 1));
 // {subLocations.reverse().map(location => <IssLocationsTableItem {...location} key={location.index} /> )}
