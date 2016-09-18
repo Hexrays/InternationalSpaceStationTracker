@@ -26,16 +26,8 @@ const latestStyle = {
   backgroundColor : 'lime',
 };
 
-const Marker = ({key, latest}) => {
-  if(latest) {
-    return (
-      <div className="map-marker" key={key} style={latestStyle}></div>
-    );
-  } else {
-    return (
-      <div className="map-marker" key={key} style={style}></div>
-    );
-  }
-};
+const Marker = ({key, latest}) => (
+  <div className="map-marker" key={key} style={latest ? latestStyle : style}></div>
+);
 
 export default Marker;

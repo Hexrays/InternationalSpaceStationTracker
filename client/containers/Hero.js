@@ -5,7 +5,7 @@ import { MAPS_API_KEY } from '../config';
 
 import IssMap from '../components/Map';
 import Marker from '../components/Marker';
-import IssLocationsTable from '../components/IssLocationsTable';
+import IssCurrentLocation from '../components/IssCurrentLocation';
 import * as actions from '../actions';
 
 import { angleInDeg } from '../helpers';
@@ -83,8 +83,8 @@ class Hero extends Component {
           center={center} >
           {locations.map(location => this.renderMarker(location, lastLocId))}
         </IssMap>
-        <IssLocationsTable
-          locations={locations}/>
+        <IssCurrentLocation
+          location={lastLocation}/>
       </div>
     );
   }
