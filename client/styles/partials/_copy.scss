@@ -5,6 +5,10 @@
   width: 90%;
   max-width: 960px;
   margin: 20px auto;
+
+  @include breakpoint(mb){
+    display: block;
+  }
 }
 
 .column {
@@ -14,10 +18,17 @@
 .column-1 {
   width: 30%;
   text-transform: uppercase;
+
+  @include breakpoint(mb){
+    width: 100%;
+  }
 }
 
 .column-2 {
   width: 66%;
+  @include breakpoint(mb){
+    width: 100%;
+  }
 }
 
 .log-info {
