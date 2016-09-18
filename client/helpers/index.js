@@ -88,3 +88,5 @@ export function before(el, html) {
 export function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
+
+export const angleInDeg = (p1, p2) => Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;

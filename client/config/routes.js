@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import store, { history } from './store';
 
 import App from '../components/App';
-import Home from '../containers/Home';
+import Home from '../components/Home';
 
 const routes = (
   <Provider store={store}>

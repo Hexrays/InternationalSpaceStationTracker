@@ -8,8 +8,10 @@ import Marker from '../components/Marker';
 import IssLocationsTable from '../components/IssLocationsTable';
 import * as actions from '../actions';
 
+import { angleInDeg } from '../helpers';
 
-class Home extends Component {
+
+class Hero extends Component {
   static defaultProps = {
     zoom: 3
   }
@@ -30,11 +32,13 @@ class Home extends Component {
     }, 5000);
   }
 
-  renderMarker({location, index}) {
+  renderMarker({location, index}, total, angle) {
+    const degs = index == total ? angle : false;
     return (
       <Marker
         key={index}
         {...location}
+        degs={degs}
       ></Marker>
     );
   }
@@ -60,22 +64,34 @@ class Home extends Component {
 
   render() {
     const locations = this.props.locations;
-    const subLocations = locations.slice(Math.max(locations.length - 10, 1));
+    const lastLocId = locations.length -1;
+    let angle;
 
     if(!locations.length) {
       return <div>Loading...</div>
     }
-    const center = this.state.center ? this.state.center : locations[locations.length -1].location
+    const lastLocation = locations[lastLocId];
+    const center = this.state.center ? this.state.center : lastLocation.location
+
+    if(locations.length > 2) {
+      angle = angleInDeg({
+        x: lastLocation.location.lat,
+        y: lastLocation.location.lng
+      },{
+        x:  locations[locations.length -2].location.lat,
+        y: locations[locations.length -2].location.lng
+      });
+    }
 
     return (
-      <div className="landing-container container">
+      <div className="hero">
         <IssMap
           zoom={this.props.zoom}
           locations={this.props.locations}
           apiKey={MAPS_API_KEY}
           onMapChange={this._handleMapChange.bind(this)}
           center={center} >
-          {locations.map(location => this.renderMarker(location))}
+          {locations.map(location => this.renderMarker(location, lastLocId, angle))}
         </IssMap>
         <IssLocationsTable
           locations={locations}/>
@@ -88,6 +104,7 @@ function mapStateToProps(state) {
   return { locations: state.issReducer };
 }
 
-export default connect(mapStateToProps, actions)(Home);
+export default connect(mapStateToProps, actions)(Hero);
 
+    // const subLocations = locations.slice(Math.max(locations.length - 10, 1));
 // {subLocations.reverse().map(location => <IssLocationsTableItem {...location} key={location.index} /> )}
