@@ -25,7 +25,9 @@
 }
 
 .column-2 {
-  width: 66%;
+  width: 65%;
+  font-size: 14rem;
+
   @include breakpoint(mb){
     width: 100%;
   }
@@ -37,11 +39,7 @@
 
 .log-item {
   margin: 10px 0;
-  font-size: 16rem;
-}
-
-.log-descriptor {
-  font-size: 11rem;
+  font-size: 10rem;
 }
 
 .project-about-title {
@@ -51,4 +49,13 @@
 
 .project-about-copy {
   margin-top: 20px;
+}
+
+.project-made-by {
+  margin-top: 25px;
+  font-size: 12rem;
+}
+
+.project-link {
+  color: lime;
 }

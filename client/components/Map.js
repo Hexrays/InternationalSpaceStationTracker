@@ -34,7 +34,7 @@ function createMapOptions() {
 }
 
 const IssMap = (props) => (
-  <div className="map-container">
+  <section className="map-container">
     <GoogleMap
       options={createMapOptions}
       bootstrapURLKeys={{
@@ -46,7 +46,7 @@ const IssMap = (props) => (
       >
       {props.children}
     </GoogleMap>
-  </div>
+  </section>
 );
 
 export default IssMap;

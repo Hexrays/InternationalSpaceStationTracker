@@ -76,7 +76,7 @@ class Hero extends Component {
     const center = this.state.center ? this.state.center : lastLocation.location
 
     return (
-      <section className="hero">
+      <div className="hero">
         <IssMap
           zoom={this.props.zoom}
           locations={this.props.locations}
@@ -88,7 +88,7 @@ class Hero extends Component {
         <IssCurrentLocation
           location={lastLocation}/>
         <Copy locations={subLocations}/>
-      </section>
+      </div>
     );
   }
 };

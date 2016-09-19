@@ -7,6 +7,7 @@
   width: 100%;
   height: 700px;
   z-index: 0;
+  max-height: 90vh;
 
   @include breakpoint(mb){
     height: 400px;
@@ -23,14 +24,14 @@
 }
 
 .map-info {
-  padding: 25px 20px 15px;
+  padding: 30px 20px 20px;
   position: absolute;
   top: 20px;
   left: 20px;
   background-color: rgba(#000, 0.75);
   color: #fff;
-  width: 350px;
-  // height: 250px;
+  width: 320px;
+
   @include breakpoint(mb){
     position: relative;
     top: auto;
@@ -41,7 +42,10 @@
 
 .map-info-title {
   text-transform: uppercase;
-  font-size: 12rem;
+  font-size: 14rem;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  opacity: 0.5;
 }
 
 .map-info-item-title {
@@ -49,6 +53,7 @@
   font-size: 10rem;
   margin-top: 10px;
   text-transform: uppercase;
+  opacity: 0.75;
 }
 
 .map-info-coord {
