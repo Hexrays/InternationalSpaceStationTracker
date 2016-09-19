@@ -5,7 +5,6 @@ var config = require('./webpack.config.dev');
 
 const port = process.env.PORT || 9000;
 
-
 var axios = require('axios');
 
 const API_URL = 'http://api.open-notify.org/iss-now.json';
@@ -31,11 +30,11 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, 'localhost', function(err) {
+app.listen(port, function(err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Listening at http://localhost:9000');
+  console.log('Listening at', port);
 });
