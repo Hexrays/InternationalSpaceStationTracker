@@ -3,6 +3,9 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 
+const port = process.env.PORT || 9000;
+
+
 var axios = require('axios');
 
 const API_URL = 'http://api.open-notify.org/iss-now.json';
@@ -28,7 +31,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(9000, 'localhost', function(err) {
+app.listen(port, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;
