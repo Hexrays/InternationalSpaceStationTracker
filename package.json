@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter",
-  "version": "0.0.0",
-  "description": "My Super Simple React Redux starter project.",
+  "name": "InternationalSpaceStationTracker",
+  "version": "0.0.1",
+  "description": "International Space Station Tracker.",
   "scripts": {
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hexrays/react-redux-starter.git"
+    "url": "https://github.com/Hexrays/InternationalSpaceStationTracker.git"
   },
   "author": "Jeff Denton",
   "homepage": "",
