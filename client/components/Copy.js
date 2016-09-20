@@ -5,7 +5,7 @@ import IssLocationLog from '../containers/IssLocationLog';
 const Copy = ({locations}) => (
   <section className="project">
     <div className="column column-1">
-      <h1 className="project-title">Internation Space Station Travel Log</h1>
+      <h1 className="project-title">International Space Station Travel Log</h1>
       <IssLocationLog />
     </div>
     <div className="column column-2">
