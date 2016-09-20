@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { MAPS_API_KEY } from '../config';
-
-import IssMap from '../components/Map';
 import Marker from '../components/Marker';
+import IssMap from '../components/Map';
 import IssCurrentLocation from '../components/IssCurrentLocation';
 import Copy from '../components/Copy';
+import { MAPS_API_KEY } from '../config';
 import * as actions from '../actions';
-
-import { angleInDeg } from '../helpers';
-
 
 class Hero extends Component {
   static defaultProps = {
-    zoom: 3
+    zoom: 3,
+    center: {lat: 40.7428665, lng: -73.9909096},
   }
 
   constructor(props) {
@@ -30,7 +27,7 @@ class Hero extends Component {
     this.props.pollIssPosition();
     setInterval(() => {
       this.props.pollIssPosition();
-    }, 5000);
+    }, 10000);
   }
 
   renderMarker({location, index}, total) {
@@ -45,6 +42,7 @@ class Hero extends Component {
   }
 
   _handleMapChange({center, zoom}) {
+    const newCenter = center.lat === 0 ? null : center;
     let timeout;
 
     if (this.state.timeout) {
@@ -55,31 +53,25 @@ class Hero extends Component {
         center: null,
         timeout: null
       });
-    }, 30000)
+    }, 15000);
+
 
     this.setState({
-      center,
+      newCenter,
       timeout
     });
   }
 
   render() {
-    const locations = this.props.locations;
-    const lastLocId = locations.length -1;
-    let angle;
-
-    if(!locations.length) {
-      return <div>Loading...</div>
-    }
-    const lastLocation = locations[lastLocId];
-    const subLocations = locations.slice(Math.max(locations.length - 3, 1));
-    const center = this.state.center ? this.state.center : lastLocation.location
+    const locations    = this.props.locations;
+    const lastLocId    = locations.length -1;
+    const lastLocation = locations[lastLocId] || {index: 'o',location:{lat:0, lng:0}};
+    const center       = this.state.center ? this.state.center : lastLocation.location
 
     return (
       <div className="hero">
         <IssMap
           zoom={this.props.zoom}
-          locations={this.props.locations}
           apiKey={MAPS_API_KEY}
           onMapChange={this._handleMapChange.bind(this)}
           center={center} >
@@ -87,7 +79,6 @@ class Hero extends Component {
         </IssMap>
         <IssCurrentLocation
           location={lastLocation}/>
-        <Copy locations={subLocations}/>
       </div>
     );
   }
@@ -98,5 +89,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actions)(Hero);
-
-// {subLocations.reverse().map(location => <IssLocationsTableItem {...location} key={location.index} /> )}

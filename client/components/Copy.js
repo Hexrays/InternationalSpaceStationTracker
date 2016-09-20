@@ -1,12 +1,12 @@
 import React from 'react';
 
-import IssLocationLog from './IssLocationLog';
+import IssLocationLog from '../containers/IssLocationLog';
 
 const Copy = ({locations}) => (
   <section className="project">
     <div className="column column-1">
       <h1 className="project-title">Internation Space Station Travel Log</h1>
-      <IssLocationLog locations={locations} />
+      <IssLocationLog />
     </div>
     <div className="column column-2">
       <h3 className="project-about-title">About the project</h3>
