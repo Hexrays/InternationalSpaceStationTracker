@@ -7,7 +7,10 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:production": "npm run build && npm run start:prod",
+    "start:prod": "cross-env NODE_ENV=production node server",
+    "postinstall": "npm run start:production"
   },
   "repository": {
     "type": "git",
